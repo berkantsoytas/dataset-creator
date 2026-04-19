@@ -137,6 +137,77 @@ TR:
 - `--keep-cloned-repo`: analizden sonra klonlanan depoyu saklar.
 - `--keep-cloned-repo` verilmezse gecici klon klasoru otomatik silinir.
 
+## CLI Examples / CLI Ornekleri
+
+EN: Real command examples for common use cases.
+
+TR: Sık kullanilan senaryolar icin gercek komut ornekleri.
+
+### 1) Analyze local project with defaults / Yerel projeyi varsayilan ayarlarla analiz et
+
+```bash
+python dataset_creator.py \
+  --source ./my-repo \
+  --output data-en.jsonl
+```
+
+### 2) Analyze a GitHub URL and auto-clean temp clone / GitHub URL analiz et ve gecici klonu otomatik temizle
+
+```bash
+python dataset_creator.py \
+  --source https://github.com/pallets/flask.git \
+  --clone-base-dir /tmp \
+  --output flask-data.jsonl
+```
+
+### 3) Analyze a GitHub URL but keep cloned repo / GitHub URL analiz et ve klonlanan depoyu sakla
+
+```bash
+python dataset_creator.py \
+  --source https://github.com/gin-gonic/gin.git \
+  --clone-base-dir /home/user/downloads/repos \
+  --keep-cloned-repo \
+  --output gin-data.jsonl
+```
+
+### 4) AI-enabled run with API key file / API anahtar dosyasi ile AI destekli calistirma
+
+```bash
+python dataset_creator.py \
+  --source ./my-repo \
+  --output data-ai.jsonl \
+  --use-ai \
+  --ai-api-key-file .openai_key \
+  --ai-model gpt-4o-mini
+```
+
+### 5) Turkish output language / Turkce cikti dili
+
+```bash
+python dataset_creator.py \
+  --source ./my-repo \
+  --output data-tr.jsonl \
+  --lang tr
+```
+
+### 6) Quiet mode (no per-chunk logs) / Sade mod (parca bazli log yok)
+
+```bash
+python dataset_creator.py \
+  --source ./my-repo \
+  --output data.jsonl \
+  --no-verbose
+```
+
+### 7) Higher quality threshold / Daha yuksek kalite esigi
+
+```bash
+python dataset_creator.py \
+  --source ./my-repo \
+  --output data-high-quality.jsonl \
+  --min-quality-score 0.60
+```
+
 ## CLI Options / CLI Parametreleri
 
 - `--source`: Source directory path or Git URL
